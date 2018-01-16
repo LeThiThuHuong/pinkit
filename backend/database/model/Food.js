@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const foodSchema = new mongoose.Schema({
+const FoodSchema = new mongoose.Schema({
     id: String,
     name: String,
     steps: Array,
@@ -10,6 +10,6 @@ const foodSchema = new mongoose.Schema({
     ingredient: Object
 })
 
-const food = mongoose.model('food', foodSchema);
+const Food = mongoose.model('Food', FoodSchema);
 
-export default food;
+export default Food;

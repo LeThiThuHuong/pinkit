@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const categorySchema = new mongoose.Schema({
+const CategorySchema = new mongoose.Schema({
     id: String,
 	name: String,
 	session: String,
@@ -9,6 +9,6 @@ const categorySchema = new mongoose.Schema({
 	Stories: String
 })
 
-const category = mongoose.model('category', categorySchema);
+const Category = mongoose.model('Category', CategorySchema);
 
-export default category;
+export default Category;
