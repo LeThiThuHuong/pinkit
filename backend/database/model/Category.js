@@ -3,10 +3,10 @@ const mongoose = require('mongoose');
 const CategorySchema = new mongoose.Schema({
     id: String,
 	name: String,
-	session: String,
+	season: String,
 	imageDemo: Array,
 	decripstion: String,
-	Stories: String
+	stories: String
 })
 
 const Category = mongoose.model('Category', CategorySchema);
