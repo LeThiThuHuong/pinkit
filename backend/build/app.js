@@ -1,6 +1,6 @@
 'use strict';
 
-var _Init = require('./Init');
+var _Init = require('../database/Init');
 
 var _Init2 = _interopRequireDefault(_Init);
 
