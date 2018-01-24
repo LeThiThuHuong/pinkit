@@ -6,13 +6,14 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rimraf build/ && babel ./ --out-dir build/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log --copy-files",
-    "start": "npm run build && node build/app.js"
+    "start": "npm run build && node build/express/main.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "babel-preset-es2015": "^6.24.1",
+    "body-parser": "^1.18.2",
     "express": "^4.16.2",
     "mongoose": "^4.13.9",
     "rimraf": "^2.6.2"
