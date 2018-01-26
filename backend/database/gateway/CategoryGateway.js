@@ -5,19 +5,19 @@ import { error } from 'util';
 export const CategoryGateway = {
     create: (createCategoryData) => {
         return new Promise((resolve, reject) => {
-            Category.create(createCategoryData, (err, category) => {
+            Category.create(createCategoryData, (err, Category) => {
                 if (err) {
                     reject(err);
                 } else {
-                    resolve(category);
+                    resolve(Category);
                 }
             });
         });
     },
 
-    update: (id, data) => {
+    updateById: (id, data) => {
         return new Promise((resolve, reject) => {
-            Category.update({ id: id, name: name, season: season, imageDemo: imageDemo, stories: stories }, (err, category) => {
+            Category.updateById({id: id}, data, (err, category) => {
                 if (err) {
                     reject(err);
                 } else {
@@ -31,9 +31,9 @@ export const CategoryGateway = {
         });
     },
 
-    findById: (id, data) => {
+    findById: (id) => {
         return new Promise((resolve, reject) => {
-            Category.findById(id, (err, category) => {
+            Category.findById({id: id}, (err, category) => {
                 if (err) {
                     reject(err);
                 } else {
@@ -49,7 +49,7 @@ export const CategoryGateway = {
 
     deleteById: (id) => {
         return new Promise((resolve, reject) => {
-            Category.delete(id, (err, category) => {
+            Category.delete({id: id}, (err, category) => {
                 if (err) {
                     reject(err);
                 } else {

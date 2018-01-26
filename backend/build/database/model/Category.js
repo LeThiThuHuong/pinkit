@@ -11,7 +11,7 @@ var CategorySchema = new mongoose.Schema({
 				season: String,
 				imageDemo: Array,
 				decripstion: String,
-				stories: String
+				stores: String
 });
 
 var Category = mongoose.model('Category', CategorySchema);

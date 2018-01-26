@@ -15,9 +15,9 @@ export const FoodGateway = {
         });
     },
 
-    update: (id, data) => {
+    updateById: (id, data) => {
         return new Promise((resolve, reject) => {
-            Food.update({id: id, name: name, steps: steps, category: category, tags: tags, media: media, note: note, ingredient: ingredient}, (err, food) => {
+            Food.update({id: id}, data, (err, food) => {
                 if (err) {
                     reject(err);
                 } else {
@@ -34,7 +34,7 @@ export const FoodGateway = {
 
     findById: (id) => {
         return new Promise((resolve, reject) => {
-            Food.findById(id, (err, food) => {
+            Food.findById({id: id}, (err, food) => {
                 if (err) {
                     reject(err);
                 } else {
@@ -51,7 +51,7 @@ export const FoodGateway = {
 
     deleteById: (id) => {
         return new Promise((resolve, reject) => {
-            Food.deleteById(id, (err, food) => {
+            Food.deleteById({id: id}, (err, food) => {
                 if (err) {
                     reject(err);
                 } else {

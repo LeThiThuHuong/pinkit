@@ -26,9 +26,9 @@ var FoodGateway = exports.FoodGateway = {
         });
     },
 
-    update: function update(id, data) {
+    updateById: function updateById(id, data) {
         return new Promise(function (resolve, reject) {
-            _Food2.default.update({ id: id, name: name, steps: steps, category: category, tags: tags, media: media, note: note, ingredient: ingredient }, function (err, food) {
+            _Food2.default.update({ id: id }, data, function (err, food) {
                 if (err) {
                     reject(err);
                 } else {
@@ -44,7 +44,7 @@ var FoodGateway = exports.FoodGateway = {
 
     findById: function findById(id) {
         return new Promise(function (resolve, reject) {
-            _Food2.default.findById(id, function (err, food) {
+            _Food2.default.findById({ id: id }, function (err, food) {
                 if (err) {
                     reject(err);
                 } else {
@@ -60,7 +60,7 @@ var FoodGateway = exports.FoodGateway = {
 
     deleteById: function deleteById(id) {
         return new Promise(function (resolve, reject) {
-            _Food2.default.deleteById(id, function (err, food) {
+            _Food2.default.deleteById({ id: id }, function (err, food) {
                 if (err) {
                     reject(err);
                 } else {

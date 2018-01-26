@@ -6,7 +6,7 @@ const CategorySchema = new mongoose.Schema({
 	season: String,
 	imageDemo: Array,
 	decripstion: String,
-	stories: String
+	stores: String
 })
 
 const Category = mongoose.model('Category', CategorySchema);

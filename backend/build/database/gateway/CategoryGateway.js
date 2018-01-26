@@ -18,19 +18,19 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var CategoryGateway = exports.CategoryGateway = {
     create: function create(createCategoryData) {
         return new Promise(function (resolve, reject) {
-            _Category2.default.create(createCategoryData, function (err, category) {
+            _Category2.default.create(createCategoryData, function (err, Category) {
                 if (err) {
                     reject(err);
                 } else {
-                    resolve(category);
+                    resolve(Category);
                 }
             });
         });
     },
 
-    update: function update(id, data) {
+    updateById: function updateById(id, data) {
         return new Promise(function (resolve, reject) {
-            _Category2.default.update({ id: id, name: name, season: season, imageDemo: imageDemo, stories: stories }, function (err, category) {
+            _Category2.default.updateById({ id: id }, { data: data }, function (err, category) {
                 if (err) {
                     reject(err);
                 } else {
@@ -44,9 +44,9 @@ var CategoryGateway = exports.CategoryGateway = {
         });
     },
 
-    findById: function findById(id, data) {
+    findById: function findById(id) {
         return new Promise(function (resolve, reject) {
-            _Category2.default.findById(id, function (err, category) {
+            _Category2.default.findById({ id: id }, function (err, category) {
                 if (err) {
                     reject(err);
                 } else {
@@ -62,7 +62,7 @@ var CategoryGateway = exports.CategoryGateway = {
 
     deleteById: function deleteById(id) {
         return new Promise(function (resolve, reject) {
-            _Category2.default.delete(id, function (err, category) {
+            _Category2.default.delete({ id: id }, function (err, category) {
                 if (err) {
                     reject(err);
                 } else {
