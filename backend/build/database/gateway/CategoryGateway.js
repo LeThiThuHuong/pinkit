@@ -30,14 +30,14 @@ var CategoryGateway = exports.CategoryGateway = {
 
     updateById: function updateById(id, data) {
         return new Promise(function (resolve, reject) {
-            _Category2.default.updateById({ id: id }, { data: data }, function (err, category) {
+            _Category2.default.findByIdAndUpdate({ '_id': id }, data, function (err, category) {
                 if (err) {
                     reject(err);
                 } else {
                     if (category) {
-                        resolve('updated completely!');
+                        resolve(category);
                     } else {
-                        resolve('no data to update');
+                        resolve({});
                     }
                 }
             });
@@ -46,7 +46,7 @@ var CategoryGateway = exports.CategoryGateway = {
 
     findById: function findById(id) {
         return new Promise(function (resolve, reject) {
-            _Category2.default.findById({ id: id }, function (err, category) {
+            _Category2.default.findById({ '_id': id }, function (err, category) {
                 if (err) {
                     reject(err);
                 } else {
@@ -62,7 +62,7 @@ var CategoryGateway = exports.CategoryGateway = {
 
     deleteById: function deleteById(id) {
         return new Promise(function (resolve, reject) {
-            _Category2.default.delete({ id: id }, function (err, category) {
+            _Category2.default.remove({ '_id': id }, function (err, category) {
                 if (err) {
                     reject(err);
                 } else {

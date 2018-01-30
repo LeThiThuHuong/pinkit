@@ -14,9 +14,9 @@ export const IngredientGateway = {
         });
     },
 
-    update: (id, data) => {
+    updateById: (id, data) => {
         return new Promise((resolve, reject) => {
-            Ingredient.update({id: id, name: name, amount: amount, shop: shop}, (err, ingredinet) => {
+            Ingredient.findByIdAndUpdate({'_id': id}, data, (err, ingredinet) => {
                 if (err) {
                     reject(err);
                 } else {
@@ -30,9 +30,9 @@ export const IngredientGateway = {
         });
     },
 
-    findById: (id, data) => {
+    findById: (id) => {
         return new Promise((resolve, reject) => {
-            Ingredient.findById(id, (err, ingredient) => {
+            Ingredient.findById({'_id': id}, (err, ingredient) => {
                 if (err) {
                     reject(err);
                 } else {
@@ -48,7 +48,7 @@ export const IngredientGateway = {
 
     deleteById: (id) => {
         return new Promise((resolve, reject) => {
-            Ingredient.deleteById(id, (err, ingredient) => {
+            Ingredient.remove({'_id': id}, (err, ingredient) => {
                 if (err) {
                     reject(err);
                 } else {

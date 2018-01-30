@@ -6,6 +6,8 @@ var _Init2 = _interopRequireDefault(_Init);
 
 var _CategoryController = require('../express/controller/CategoryController');
 
+var _FoodController = require('./controller/FoodController');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var express = require('express');
@@ -23,5 +25,7 @@ app.use(bodyParser.json());
     });
 
     app.post('/Category', _CategoryController.CategoryController.create);
-    app.put('/Category/:CategoryId', _CategoryController.CategoryController.updateById);
+    app.post('/Food', _FoodController.FoodController.create);
+    app.put('/Category/:categoryId', _CategoryController.CategoryController.updateById);
+    app.delete('/Category/:categoryId', _CategoryController.CategoryController.deleleById);
 });

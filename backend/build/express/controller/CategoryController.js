@@ -15,20 +15,24 @@ var CategoryController = exports.CategoryController = {
     },
 
     updateById: function updateById(req, res) {
-        _CategoryGateway.CategoryGateway.updateById(req.body.id).then(function (category) {
+        var _req$body = req.body,
+            name = _req$body.name,
+            season = _req$body.season;
+
+        _CategoryGateway.CategoryGateway.updateById(req.params.categoryId, { name: name, season: season }).then(function (category) {
             res.json(category);
         });
     },
 
     findById: function findById(req, res) {
-        _CategoryGateway.CategoryGateway.findById(req.body.id).then(function (category) {
+        _CategoryGateway.CategoryGateway.findById(req.params.id).then(function (category) {
             res.json(category);
         });
     },
 
     deleleById: function deleleById(req, res) {
-        _CategoryGateway.CategoryGateway.deleleById(req.body.id).then(function (result) {
-            res('deleted sucessfully!');
+        _CategoryGateway.CategoryGateway.deleteById(req.params.categoryId).then(function (result) {
+            res.status(200).send('deleted sucessfully!');
         });
     }
 };

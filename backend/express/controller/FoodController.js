@@ -3,27 +3,29 @@ import {FoodGateway} from "../../database/gateway/FoodGateway";
 export const FoodController = {
     create: (req, res) => {
         FoodGateway.create(req.body).then((food) => {
-            res.json(food);
+            res.json({food: food, status: 200, msg: 'successfully' });
         });
     },
 
 
     updateById: (req, res) => {
-        FoodGateway.updateById(req.body.id).then((food) => {
-            res.json(food);
+        const {name, steps, category, tags, media, note, ingredient} = req.body;
+        FoodGateway.updateById(req.params.foodId, {name, steps, category, tags, media, note, ingredient}).then((food) => {
+            res.json({food: food, status: 200, msg: 'successfully!'});
         });
     },
 
+
     deleteById: (req, res) => {
-        FoodGateway.deleteById(req.body.id).then((result) => {
-            res('deleted successfully!');
+        FoodGateway.deleteById(req.params.foodId).then((result) => {
+            res.status(200).send('deleted successfully!');
         });
     },
 
 
     findById: (req, res) => {
-        FoodGateway.findById(req.body.id).then((food) => {
-            res.json(food);
+        FoodGateway.findById(req.params.foodId).then((food) => {
+            res.json({food: food, status: 200, msg: 'successfully!'});
         })
     }
 }

@@ -17,12 +17,12 @@ export const FoodGateway = {
 
     updateById: (id, data) => {
         return new Promise((resolve, reject) => {
-            Food.update({id: id}, data, (err, food) => {
+            Food.findByIdAndUpdate({'_id': id}, data, (err, food) => {
                 if (err) {
                     reject(err);
                 } else {
                     if (food) {
-                        resolve('updated completely');
+                        resolve(food);
                     } else {
                         resolve('no data to update');
                     }
@@ -34,7 +34,7 @@ export const FoodGateway = {
 
     findById: (id) => {
         return new Promise((resolve, reject) => {
-            Food.findById({id: id}, (err, food) => {
+            Food.findById({'_id': id}, (err, food) => {
                 if (err) {
                     reject(err);
                 } else {
@@ -51,7 +51,7 @@ export const FoodGateway = {
 
     deleteById: (id) => {
         return new Promise((resolve, reject) => {
-            Food.deleteById({id: id}, (err, food) => {
+            Food.remove({'_id': id}, (err, food) => {
                 if (err) {
                     reject(err);
                 } else {

@@ -14,18 +14,13 @@ export const UserAdminGateway = {
         });
     },
 
-    update: (id, data) => {
+    updateById: (id, data) => {
         return new Promise((resolve, reject) => {
-            UserAdmin.update({ id: id, username: username, password: password }, (err, user) => {
+            UserAdmin.findByIdAndUpdate({'_id': id}, data, (err, user) => {
                 if (err) {
                     reject(err);
                 } else {
                     if (user) {
-                        user.update({
-                            id: id,
-                            username: username,
-                            password: password
-                        })
                         resolve('updated completely');
                     } else {
                         resolve('no date updated');
@@ -37,7 +32,7 @@ export const UserAdminGateway = {
 
     deleteById: (id) => {
         return new Promise((resolve, reject) => {
-            UserAdmin.delete(id, (err, user) => {
+            UserAdmin.remove({'_id': id}, (err, user) => {
                 if (err) {
                     reject(err);
                 } else {
@@ -46,7 +41,6 @@ export const UserAdminGateway = {
                     } else {
                         resolve('no data to delete');
                     }
-                    
                 }
             })
         })
@@ -54,7 +48,7 @@ export const UserAdminGateway = {
 
     findById: (id, data) => {
         return new Promise((resolve, reject) => {
-            UserAdmin.findById(id, (err, user) => {
+            UserAdmin.findById({'_id': id}, (err, user) => {
                 if (err) {
                     reject(err);
                 } else {

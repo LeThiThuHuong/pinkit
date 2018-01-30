@@ -17,23 +17,24 @@ export const CategoryGateway = {
 
     updateById: (id, data) => {
         return new Promise((resolve, reject) => {
-            Category.updateById({id: id}, data, (err, category) => {
+            Category.findByIdAndUpdate({'_id': id}, data, (err, category) => {
                 if (err) {
                     reject(err);
                 } else {
                     if (category) {
-                        resolve('updated completely!');
+                        resolve(category);
                     } else {
-                        resolve('no data to update');
+                        resolve({});
                     }
                 }
             });
         });
     },
 
+
     findById: (id) => {
         return new Promise((resolve, reject) => {
-            Category.findById({id: id}, (err, category) => {
+            Category.findById({'_id': id}, (err, category) => {
                 if (err) {
                     reject(err);
                 } else {
@@ -49,7 +50,7 @@ export const CategoryGateway = {
 
     deleteById: (id) => {
         return new Promise((resolve, reject) => {
-            Category.delete({id: id}, (err, category) => {
+            Category.remove({'_id': id}, (err, category) => {
                 if (err) {
                     reject(err);
                 } else {
