@@ -1,6 +1,7 @@
 import Category from '../model/Category';
 import { resolve } from 'url';
 import { error } from 'util';
+import { NOTFOUND } from 'dns';
 
 export const CategoryGateway = {
     create: (createCategoryData) => {
@@ -24,7 +25,7 @@ export const CategoryGateway = {
                     if (category) {
                         resolve(category);
                     } else {
-                        resolve({});
+                        resolve(NOTFOUND);
                     }
                 }
             });
@@ -41,7 +42,7 @@ export const CategoryGateway = {
                     if (category) {
                         resolve(category);
                     } else {
-                        resolve('data not found!');
+                        resolve(NOTFOUND);
                     }
                 }
             });
@@ -57,7 +58,7 @@ export const CategoryGateway = {
                     if (category) {
                         resolve('deleted completely!');
                     } else {
-                        resolve('no data to delete');
+                        resolve(NOTFOUND);
                     }
                 }
             });

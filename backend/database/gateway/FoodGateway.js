@@ -1,5 +1,6 @@
 import Food from '../model/Food';
 import { resolve } from 'url';
+import { NOTFOUND } from 'dns';
 
 
 export const FoodGateway = {
@@ -24,7 +25,7 @@ export const FoodGateway = {
                     if (food) {
                         resolve(food);
                     } else {
-                        resolve('no data to update');
+                        resolve(NOTFOUND);
                     }
                 }
             });
@@ -41,7 +42,7 @@ export const FoodGateway = {
                     if (food) {
                         resolve(food);
                     } else {
-                        resolve('data not found');
+                        resolve(NOTFOUND);
                     }
                 }
             });
@@ -58,7 +59,7 @@ export const FoodGateway = {
                     if (food) {
                         resolve('delete completely');
                     } else {
-                        resolve('no data to delete');
+                        resolve(NOTFOUND);
                     }
                 }
             });

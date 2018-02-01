@@ -1,5 +1,6 @@
 import UserAdmin from '../model/UserAdmin';
 import { resolve } from 'path';
+import { NOTFOUND } from 'dns';
 
 export const UserAdminGateway = {
     create: (createUserAdminData) => {
@@ -23,7 +24,7 @@ export const UserAdminGateway = {
                     if (user) {
                         resolve('updated completely');
                     } else {
-                        resolve('no date updated');
+                        resolve(NOTFOUND);
                     }
                 }
             })
@@ -39,7 +40,7 @@ export const UserAdminGateway = {
                     if (user) {
                         resolve('delete successfully');
                     } else {
-                        resolve('no data to delete');
+                        resolve(NOTFOUND);
                     }
                 }
             })
@@ -55,7 +56,7 @@ export const UserAdminGateway = {
                     if (user) {
                         resolve(user);
                     } else {
-                        resolve({ error: 'user not found' });
+                        resolve(NOTFOUND);
                     }
                 }
             })

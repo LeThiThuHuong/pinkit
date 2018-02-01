@@ -1,5 +1,6 @@
 import Ingredient from '../model/Ingredient';
 import { resolve } from 'url';
+import { NOTFOUND } from 'dns';
 
 export const IngredientGateway = {
     create: (createIngredientData) => {
@@ -23,7 +24,7 @@ export const IngredientGateway = {
                     if (ingredinet) {
                         resolve('updated completely');
                     } else {
-                        resolve('no data to update');
+                        resolve(NOTFOUND);
                     }
                 }
             });
@@ -39,7 +40,7 @@ export const IngredientGateway = {
                     if (ingredient) {
                         resolve(ingredient);
                     } else {
-                        resolve('data not found');
+                        resolve(NOTFOUND);
                     }
                 }
             });
@@ -55,7 +56,7 @@ export const IngredientGateway = {
                     if (ingredient) {
                         resolve('deleted completely');
                     } else {
-                        resolve('no data to delete');
+                        resolve(NOTFOUND);
                     }
                 }
             });

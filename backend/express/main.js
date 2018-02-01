@@ -19,17 +19,17 @@ connect().then((msg) => {
         console.log('Server running at 4444');
     });
 
-    app.post('/Category', CategoryController.create);
-    app.post('/Food', FoodController.create);
-    app.post('/Ingredient', IngredientController.create);
-    app.post('/UserAdmin', UserAdminController.create);
-    app.put('/Category/:categoryId', CategoryController.updateById);
-    app.put('/Food/:foodId', FoodController.updateById);
-    app.put('/Ingredient/:ingredientId', IngredientController.updateById);
-    app.put('/UserAdmin/:userAdminId', UserAdminController.updateById);
-    app.delete('/Category/:categoryId', CategoryController.deleleById);
-    app.delete('/Food/:foodId', FoodController.deleteById);
-    app.delete('/Ingredient/: ingredientId', IngredientController.deleteById);
-    app.delete('/UserAdmin/:userAdminId', UserAdminController.deleteById);
-    app.delete('/userAdmin/:userAdminId', UserAdminGateway.deleteById);
+    app.post('/api/Categories', CategoryController.create);
+    app.post('/api/Foods', FoodController.create);
+    app.post('/api/Ingredients', IngredientController.create);
+    app.post('/api/UserAdmins', UserAdminController.create);
+    app.put('/api/Categories/:categoryId', CategoryController.updateById);
+    app.put('/api/Foods/:foodId', FoodController.updateById);
+    app.put('/api/Ingredients/:ingredientId', IngredientController.updateById);
+    app.put('/api/UserAdmins/:userAdminId', UserAdminController.updateById);
+    app.delete('/api/Categories/:categoryId', CategoryController.deleleById);
+    app.delete('/api/Foods/:foodId', FoodController.deleteById);
+    app.delete('/api/Ingredients/: ingredientId', IngredientController.deleteById);
+    app.delete('/api/UserAdmins/:userAdminId', UserAdminController.deleteById);
+    app.delete('/api/UserAdmins/:userAdminId', UserAdminGateway.deleteById);
 })
