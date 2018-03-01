@@ -9,10 +9,6 @@ var _Category = require('../model/Category');
 
 var _Category2 = _interopRequireDefault(_Category);
 
-var _url = require('url');
-
-var _util = require('util');
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var CategoryGateway = exports.CategoryGateway = {
@@ -37,7 +33,7 @@ var CategoryGateway = exports.CategoryGateway = {
                     if (category) {
                         resolve(category);
                     } else {
-                        resolve({});
+                        resolve('Category.NotFound');
                     }
                 }
             });
@@ -53,7 +49,7 @@ var CategoryGateway = exports.CategoryGateway = {
                     if (category) {
                         resolve(category);
                     } else {
-                        resolve('data not found!');
+                        resolve('Category.NotFound');
                     }
                 }
             });
@@ -69,7 +65,7 @@ var CategoryGateway = exports.CategoryGateway = {
                     if (category) {
                         resolve('deleted completely!');
                     } else {
-                        resolve('no data to delete');
+                        resolve('Category.NotFound');
                     }
                 }
             });

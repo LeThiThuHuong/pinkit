@@ -9,8 +9,6 @@ var _Food = require('../model/Food');
 
 var _Food2 = _interopRequireDefault(_Food);
 
-var _url = require('url');
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var FoodGateway = exports.FoodGateway = {
@@ -35,7 +33,7 @@ var FoodGateway = exports.FoodGateway = {
                     if (food) {
                         resolve(food);
                     } else {
-                        resolve('no data to update');
+                        resolve('Food.NotFound');
                     }
                 }
             });
@@ -51,7 +49,7 @@ var FoodGateway = exports.FoodGateway = {
                     if (food) {
                         resolve(food);
                     } else {
-                        resolve('data not found');
+                        resolve('Food.NotFound');
                     }
                 }
             });
@@ -67,7 +65,7 @@ var FoodGateway = exports.FoodGateway = {
                     if (food) {
                         resolve('delete completely');
                     } else {
-                        resolve('no data to delete');
+                        resolve('Food.NotFound');
                     }
                 }
             });

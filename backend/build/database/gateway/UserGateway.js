@@ -3,20 +3,18 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.UserAdminGateway = undefined;
+exports.UserGateway = undefined;
 
-var _UserAdmin = require('../model/UserAdmin');
+var _User = require('../model/User');
 
-var _UserAdmin2 = _interopRequireDefault(_UserAdmin);
-
-var _path = require('path');
+var _User2 = _interopRequireDefault(_User);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var UserAdminGateway = exports.UserAdminGateway = {
-    create: function create(createUserAdminData) {
+var UserGateway = exports.UserGateway = {
+    create: function create(createUserData) {
         return new Promise(function (resolve, reject) {
-            _UserAdmin2.default.create(createUserAdminData, function (err, user) {
+            UserAdmin.create(createUserData, function (err, user) {
                 if (err) {
                     reject(err);
                 } else {
@@ -26,21 +24,16 @@ var UserAdminGateway = exports.UserAdminGateway = {
         });
     },
 
-    update: function update(id, data) {
+    updateById: function updateById(id, data) {
         return new Promise(function (resolve, reject) {
-            _UserAdmin2.default.update({ id: id, username: username, password: password }, function (err, user) {
+            UserAdmin.findByIdAndUpdate({ '_id': id }, data, function (err, user) {
                 if (err) {
                     reject(err);
                 } else {
                     if (user) {
-                        user.update({
-                            id: id,
-                            username: username,
-                            password: password
-                        });
                         resolve('updated completely');
                     } else {
-                        resolve('no date updated');
+                        resolve('User.NotFound');
                     }
                 }
             });
@@ -49,14 +42,14 @@ var UserAdminGateway = exports.UserAdminGateway = {
 
     deleteById: function deleteById(id) {
         return new Promise(function (resolve, reject) {
-            _UserAdmin2.default.delete(id, function (err, user) {
+            UserAdmin.remove({ '_id': id }, function (err, user) {
                 if (err) {
                     reject(err);
                 } else {
                     if (user) {
                         resolve('delete successfully');
                     } else {
-                        resolve('no data to delete');
+                        resolve('User.NotFound');
                     }
                 }
             });
@@ -65,14 +58,14 @@ var UserAdminGateway = exports.UserAdminGateway = {
 
     findById: function findById(id, data) {
         return new Promise(function (resolve, reject) {
-            _UserAdmin2.default.findById(id, function (err, user) {
+            UserAdmin.findById({ '_id': id }, function (err, user) {
                 if (err) {
                     reject(err);
                 } else {
                     if (user) {
                         resolve(user);
                     } else {
-                        resolve({ error: 'user not found' });
+                        resolve('User.NotFound');
                     }
                 }
             });

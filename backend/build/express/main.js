@@ -8,6 +8,14 @@ var _CategoryController = require('../express/controller/CategoryController');
 
 var _FoodController = require('./controller/FoodController');
 
+var _IngredientController = require('./controller/IngredientController');
+
+var _UserController = require('./controller/UserController');
+
+var _UserGateway = require('../database/gateway/UserGateway');
+
+var _CategoryGateway = require('../database/gateway/CategoryGateway');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var express = require('express');
@@ -24,8 +32,23 @@ app.use(bodyParser.json());
         console.log('Server running at 4444');
     });
 
-    app.post('/Category', _CategoryController.CategoryController.create);
-    app.post('/Food', _FoodController.FoodController.create);
-    app.put('/Category/:categoryId', _CategoryController.CategoryController.updateById);
-    app.delete('/Category/:categoryId', _CategoryController.CategoryController.deleleById);
+    //category
+    app.post('/api/categories', _CategoryController.CategoryController.create);
+    app.put('/api/categories/:categoryId', _CategoryController.CategoryController.updateById);
+    app.delete('/api/categories/:categoryId', _CategoryController.CategoryController.deleleById);
+
+    //food
+    app.post('/api/foods', _FoodController.FoodController.create);
+    app.put('/api/foods/:foodId', _FoodController.FoodController.updateById);
+    app.delete('/api/foods/:foodId', _FoodController.FoodController.deleteById);
+
+    //ingredient
+    app.post('/api/ingredients', _IngredientController.IngredientController.create);
+    app.put('/api/ingredients/:ingredientId', _IngredientController.IngredientController.updateById);
+    app.delete('/api/ingredients/: ingredientId', _IngredientController.IngredientController.deleteById);
+
+    //user
+    app.post('/api/user', _UserController.UserController.create);
+    app.put('/api/user/:userId', _UserController.UserController.updateById);
+    app.delete('/api/user/:userId', _UserController.UserController.deleteById);
 });

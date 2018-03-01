@@ -1,7 +1,4 @@
 import Category from '../model/Category';
-import { resolve } from 'url';
-import { error } from 'util';
-import { NOTFOUND } from 'dns';
 
 export const CategoryGateway = {
     create: (createCategoryData) => {
@@ -19,13 +16,13 @@ export const CategoryGateway = {
     updateById: (id, data) => {
         return new Promise((resolve, reject) => {
             Category.findByIdAndUpdate({'_id': id}, data, (err, category) => {
-                if (err) {
+                if (err){
                     reject(err);
                 } else {
                     if (category) {
                         resolve(category);
                     } else {
-                        resolve(NOTFOUND);
+                        resolve('Category.NotFound');
                     }
                 }
             });
@@ -42,7 +39,7 @@ export const CategoryGateway = {
                     if (category) {
                         resolve(category);
                     } else {
-                        resolve(NOTFOUND);
+                        resolve('Category.NotFound');
                     }
                 }
             });
@@ -58,7 +55,7 @@ export const CategoryGateway = {
                     if (category) {
                         resolve('deleted completely!');
                     } else {
-                        resolve(NOTFOUND);
+                        resolve('Category.NotFound');
                     }
                 }
             });

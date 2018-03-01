@@ -1,7 +1,4 @@
 import Food from '../model/Food';
-import { resolve } from 'url';
-import { NOTFOUND } from 'dns';
-
 
 export const FoodGateway = {
     create: (createFoodData) => {
@@ -25,7 +22,7 @@ export const FoodGateway = {
                     if (food) {
                         resolve(food);
                     } else {
-                        resolve(NOTFOUND);
+                        resolve('Food.NotFound');
                     }
                 }
             });
@@ -42,7 +39,7 @@ export const FoodGateway = {
                     if (food) {
                         resolve(food);
                     } else {
-                        resolve(NOTFOUND);
+                        resolve('Food.NotFound');
                     }
                 }
             });
@@ -59,7 +56,7 @@ export const FoodGateway = {
                     if (food) {
                         resolve('delete completely');
                     } else {
-                        resolve(NOTFOUND);
+                        resolve('Food.NotFound');
                     }
                 }
             });

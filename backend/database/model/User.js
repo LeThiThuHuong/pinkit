@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const UserAdminSchema = new mongoose.Schema({
+const UserSchema = new mongoose.Schema({
     id: String,
     username: String,
     age: Number,
@@ -13,9 +13,9 @@ const UserAdminSchema = new mongoose.Schema({
     password: String
 })
 
-const UserAdmin = mongoose.model('UserAdmin', UserAdminSchema);
+const User = mongoose.model('User', UserSchema);
 
-export default UserAdmin;
+export default User;
 
 
 

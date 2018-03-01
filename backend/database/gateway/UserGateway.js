@@ -1,11 +1,9 @@
-import UserAdmin from '../model/UserAdmin';
-import { resolve } from 'path';
-import { NOTFOUND } from 'dns';
+import User from '../model/User';
 
-export const UserAdminGateway = {
-    create: (createUserAdminData) => {
+export const UserGateway = {
+    create: (createUserData) => {
         return new Promise((resolve, reject) => {
-            UserAdmin.create(createUserAdminData, (err, user) => {
+            UserAdmin.create(createUserData, (err, user) => {
                 if (err) {
                     reject(err);
                 } else {
@@ -24,7 +22,7 @@ export const UserAdminGateway = {
                     if (user) {
                         resolve('updated completely');
                     } else {
-                        resolve(NOTFOUND);
+                        resolve('User.NotFound');
                     }
                 }
             })
@@ -40,7 +38,7 @@ export const UserAdminGateway = {
                     if (user) {
                         resolve('delete successfully');
                     } else {
-                        resolve(NOTFOUND);
+                        resolve('User.NotFound');
                     }
                 }
             })
@@ -56,7 +54,7 @@ export const UserAdminGateway = {
                     if (user) {
                         resolve(user);
                     } else {
-                        resolve(NOTFOUND);
+                        resolve('User.NotFound');
                     }
                 }
             })

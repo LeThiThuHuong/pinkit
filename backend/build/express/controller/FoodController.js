@@ -1,16 +1,16 @@
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
 exports.FoodController = undefined;
 
-var _FoodGateway = require("../../database/gateway/FoodGateway");
+var _FoodGateway = require('../../database/gateway/FoodGateway');
 
 var FoodController = exports.FoodController = {
     create: function create(req, res) {
         _FoodGateway.FoodGateway.create(req.body).then(function (food) {
-            res.json(food);
+            res.json({ food: food, status: 200, msg: 'successfully' });
         });
     },
 
@@ -25,7 +25,7 @@ var FoodController = exports.FoodController = {
             ingredient = _req$body.ingredient;
 
         _FoodGateway.FoodGateway.updateById(req.params.foodId, { name: name, steps: steps, category: category, tags: tags, media: media, note: note, ingredient: ingredient }).then(function (food) {
-            res.json(food);
+            res.json({ food: food, status: 200, msg: 'successfully!' });
         });
     },
 
@@ -37,7 +37,7 @@ var FoodController = exports.FoodController = {
 
     findById: function findById(req, res) {
         _FoodGateway.FoodGateway.findById(req.params.foodId).then(function (food) {
-            res.json(food);
+            res.json({ food: food, status: 200, msg: 'successfully!' });
         });
     }
 };

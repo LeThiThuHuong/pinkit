@@ -5,9 +5,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 var mongoose = require('mongoose');
 
-var UserAdminSchema = new mongoose.Schema({
+var UserSchema = new mongoose.Schema({
     id: String,
-    userName: String,
+    username: String,
     age: Number,
     name: {
         firstname: String,
@@ -18,6 +18,6 @@ var UserAdminSchema = new mongoose.Schema({
     password: String
 });
 
-var UserAdmin = mongoose.model('UserAdmin', UserAdminSchema);
+var User = mongoose.model('User', UserSchema);
 
-exports.default = UserAdmin;
+exports.default = User;

@@ -9,8 +9,6 @@ var _Ingredient = require('../model/Ingredient');
 
 var _Ingredient2 = _interopRequireDefault(_Ingredient);
 
-var _url = require('url');
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var IngredientGateway = exports.IngredientGateway = {
@@ -26,32 +24,32 @@ var IngredientGateway = exports.IngredientGateway = {
         });
     },
 
-    update: function update(id, data) {
+    updateById: function updateById(id, data) {
         return new Promise(function (resolve, reject) {
-            _Ingredient2.default.update({ id: id, name: name, amount: amount, shop: shop }, function (err, ingredinet) {
+            _Ingredient2.default.findByIdAndUpdate({ '_id': id }, data, function (err, ingredinet) {
                 if (err) {
                     reject(err);
                 } else {
                     if (ingredinet) {
                         resolve('updated completely');
                     } else {
-                        resolve('no data to update');
+                        resolve('Ingredient.NotFound');
                     }
                 }
             });
         });
     },
 
-    findById: function findById(id, data) {
+    findById: function findById(id) {
         return new Promise(function (resolve, reject) {
-            _Ingredient2.default.findById(id, function (err, ingredient) {
+            _Ingredient2.default.findById({ '_id': id }, function (err, ingredient) {
                 if (err) {
                     reject(err);
                 } else {
                     if (ingredient) {
                         resolve(ingredient);
                     } else {
-                        resolve('data not found');
+                        resolve('Ingredient.NotFound');
                     }
                 }
             });
@@ -60,14 +58,14 @@ var IngredientGateway = exports.IngredientGateway = {
 
     deleteById: function deleteById(id) {
         return new Promise(function (resolve, reject) {
-            _Ingredient2.default.deleteById(id, function (err, ingredient) {
+            _Ingredient2.default.remove({ '_id': id }, function (err, ingredient) {
                 if (err) {
                     reject(err);
                 } else {
                     if (ingredient) {
                         resolve('deleted completely');
                     } else {
-                        resolve('no data to delete');
+                        resolve('Ingredient.NotFound');
                     }
                 }
             });

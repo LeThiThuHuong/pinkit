@@ -2,8 +2,8 @@ import connect from '../database/Init';
 import {CreateCategory, CategoryController} from '../express/controller/CategoryController';
 import { FoodController } from './controller/FoodController';
 import { IngredientController } from './controller/IngredientController';
-import { UserAdminController } from './controller/UserAdminController';
-import { UserAdminGateway } from '../database/gateway/UserAdminGateway';
+import { UserController } from './controller/UserController';
+import { UserGateway } from '../database/gateway/UserGateway';
 import { CategoryGateway } from '../database/gateway/CategoryGateway';
 const express = require('express');
 const app = express();
@@ -19,17 +19,24 @@ connect().then((msg) => {
         console.log('Server running at 4444');
     });
 
-    app.post('/api/Categories', CategoryController.create);
-    app.post('/api/Foods', FoodController.create);
-    app.post('/api/Ingredients', IngredientController.create);
-    app.post('/api/UserAdmins', UserAdminController.create);
-    app.put('/api/Categories/:categoryId', CategoryController.updateById);
-    app.put('/api/Foods/:foodId', FoodController.updateById);
-    app.put('/api/Ingredients/:ingredientId', IngredientController.updateById);
-    app.put('/api/UserAdmins/:userAdminId', UserAdminController.updateById);
-    app.delete('/api/Categories/:categoryId', CategoryController.deleleById);
-    app.delete('/api/Foods/:foodId', FoodController.deleteById);
-    app.delete('/api/Ingredients/: ingredientId', IngredientController.deleteById);
-    app.delete('/api/UserAdmins/:userAdminId', UserAdminController.deleteById);
-    app.delete('/api/UserAdmins/:userAdminId', UserAdminGateway.deleteById);
+        //category
+    app.post('/api/categories', CategoryController.create);
+    app.put('/api/categories/:categoryId', CategoryController.updateById);
+    app.delete('/api/categories/:categoryId', CategoryController.deleleById);
+
+        //food
+    app.post('/api/foods', FoodController.create);
+    app.put('/api/foods/:foodId', FoodController.updateById);
+    app.delete('/api/foods/:foodId', FoodController.deleteById);
+
+        //ingredient
+    app.post('/api/ingredients', IngredientController.create);
+    app.put('/api/ingredients/:ingredientId', IngredientController.updateById);
+    app.delete('/api/ingredients/: ingredientId', IngredientController.deleteById);
+
+        //user
+    app.post('/api/user', UserController.create);
+    app.put('/api/user/:userId', UserController.updateById);
+    app.delete('/api/user/:userId', UserController.deleteById);
+    
 })
