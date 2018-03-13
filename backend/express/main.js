@@ -5,6 +5,8 @@ import { IngredientController } from './controller/IngredientController';
 import { UserController } from './controller/UserController';
 import { UserGateway } from '../database/gateway/UserGateway';
 import { CategoryGateway } from '../database/gateway/CategoryGateway';
+import { Unauthorization } from './Exception';
+
 const express = require('express');
 const app = express();
 var bodyParser = require('body-parser');
@@ -23,20 +25,37 @@ connect().then((msg) => {
     app.post('/api/categories', CategoryController.create);
     app.put('/api/categories/:categoryId', CategoryController.updateById);
     app.delete('/api/categories/:categoryId', CategoryController.deleleById);
+    app.get('api/categories', CategoryController.getCategory);
+    app.get('api/categories/:categoryId', CategoryController.getCategoryById);
 
         //food
     app.post('/api/foods', FoodController.create);
     app.put('/api/foods/:foodId', FoodController.updateById);
     app.delete('/api/foods/:foodId', FoodController.deleteById);
+    app.get('api/foods', FoodController.getFood);
+    app.get('api/foods/:foodId', FoodController.getFoodById);
 
         //ingredient
     app.post('/api/ingredients', IngredientController.create);
     app.put('/api/ingredients/:ingredientId', IngredientController.updateById);
     app.delete('/api/ingredients/: ingredientId', IngredientController.deleteById);
+    app.get('api/ingredients', IngredientController.getIngredient);
+    app.get('api/ingredients/:ingredientId', IngredientController.getIngredientById);
 
         //user
-    app.post('/api/user', UserController.create);
-    app.put('/api/user/:userId', UserController.updateById);
-    app.delete('/api/user/:userId', UserController.deleteById);
-    
+    app.post('/api/users', UserController.create);
+    app.put('/api/users/:userId', UserController.updateById);
+    app.delete('/api/users/:userId', UserController.deleteById);
+    app.get('api/users', UserController.getUser);
+    app.get('api/users/:userId', UserGateway.getUserById);
+
+    app.get('/getError', (req, res) => {
+        throw new Unauthorization("Phai la admin moi duoc lam");
+    });
+
+    app.use((err, req, res, next) => {
+        console.log(err.code, err.message);
+        res.status(err.code).send(err.message);
+
+    });
 })

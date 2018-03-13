@@ -3,19 +3,19 @@ import User from '../model/User';
 export const UserGateway = {
     create: (createUserData) => {
         return new Promise((resolve, reject) => {
-            UserAdmin.create(createUserData, (err, user) => {
+            User.create(createUserData, (err, user) => {
                 if (err) {
                     reject(err);
                 } else {
                     resolve(user);
-                };
-            });
-        });
+                }
+            })
+        })
     },
 
     updateById: (id, data) => {
         return new Promise((resolve, reject) => {
-            UserAdmin.findByIdAndUpdate({'_id': id}, data, (err, user) => {
+            User.findByIdAndUpdate({'_id': id}, data, (err, user) => {
                 if (err) {
                     reject(err);
                 } else {
@@ -31,7 +31,7 @@ export const UserGateway = {
 
     deleteById: (id) => {
         return new Promise((resolve, reject) => {
-            UserAdmin.remove({'_id': id}, (err, user) => {
+            User.remove({'_id': id}, (err, user) => {
                 if (err) {
                     reject(err);
                 } else {
@@ -47,7 +47,35 @@ export const UserGateway = {
 
     findById: (id, data) => {
         return new Promise((resolve, reject) => {
-            UserAdmin.findById({'_id': id}, (err, user) => {
+            User.findById({'_id': id}, (err, user) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    if (user) {
+                        resolve(user);
+                    } else {
+                        resolve('User.NotFound');
+                    }
+                }
+            })
+        })
+    },
+
+    getUser: (user) => {
+        return new Promise((resolve, reject) => {
+            User.findById({'user': user}, (err, user) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(user);
+                }
+            })
+        })
+    },
+
+    getUserById: (id) => {
+        return new Promise((resolve, reject) => {
+            User.findById({'_id': id}, (err, user) => {
                 if (err) {
                     reject(err);
                 } else {
@@ -60,5 +88,4 @@ export const UserGateway = {
             })
         })
     }
-
 }

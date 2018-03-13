@@ -60,5 +60,33 @@ export const CategoryGateway = {
                 }
             });
         });
+    },
+
+    getCategory: (category) => {
+        return new Promise((resolve, reject) => {
+            Category.find({'food': food}, (err, category) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(category);
+                }
+            });
+        });
+    },
+
+    getCategoryById: (id) => {
+        return new Promis((resolve, reject) => {
+            Category.findById({'_id': id}, (err, category) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    if (category) {
+                        resolve(category);
+                    } else {
+                        resolve('Category.NotFound');
+                    }
+                }
+            });
+        });
     }
 }

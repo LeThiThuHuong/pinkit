@@ -24,5 +24,17 @@ export const IngredientController = {
         IngredientGateway.deleteById(req.params.ingredientId).then((ingredient) => {
             res.status(200).send('deleted successfully!')
         })
+    },
+
+    getIngredient: (req, res) => {
+        IngredientGateway.getIngredient(req.params.ingredient).then((ingredient) => {
+            res.json({ingredient: ingredient, status: 200});
+        });
+    },
+
+    getIngredientById: (req, res) => {
+        IngredientGateway.getIngredientById(req.params.ingredientId).then((ingredient) => {
+            res.json({ingredient: ingredient, status: 200});
+        });
     }
 }

@@ -26,7 +26,21 @@ export const CategoryController = {
         CategoryGateway.deleteById(req.params.categoryId).then((result) => {
             res.status(200).send('deleted sucessfully!');
         })
+    },
+
+    getCategory: (req, res) => {
+        CategoryGateway.getCategory(req.params.category).then((category) => {
+            res.json({category: category, status: 200});
+        })
+    },
+
+    getCategoryById: (req, res) => {
+        CategoryGateway.getCategoryById(req.params.categoryId).then((category) => {
+            res.json({category: category, status: 200});
+        })
     }
+
+    
 }
 
 

@@ -16,13 +16,25 @@ export const UserController = {
 
     findById: (req, res) => {
         UserGateway.findById(req.params.userId).then((user) => {
-            res.json({userAdmin: userAdmin, status: 200, msg: 'successfully!'})
+            res.json({user: user, status: 200, msg: 'successfully!'})
         })
     },
 
     deleteById: (req, res) => {
         UserGateway.deleteById(req.params.userId).then((user) => {
             res.status(200).send('deleted successfully!')
+        })
+    },
+
+    getUser: (req, res) => {
+        UserGateway.getUser(req.params.user).then((user) => {
+            res.json({user: user, status:200});
+        })
+    },
+
+    getUserById: (req, res) => {
+        UserGateway.getUserById(req.params.userId).then((user) => {
+            res.json({user: user, status: 200});
         })
     }
 }

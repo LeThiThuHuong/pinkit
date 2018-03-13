@@ -16,6 +16,8 @@ var _UserGateway = require('../database/gateway/UserGateway');
 
 var _CategoryGateway = require('../database/gateway/CategoryGateway');
 
+var _Exception = require('./Exception');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var express = require('express');
@@ -51,4 +53,14 @@ app.use(bodyParser.json());
     app.post('/api/user', _UserController.UserController.create);
     app.put('/api/user/:userId', _UserController.UserController.updateById);
     app.delete('/api/user/:userId', _UserController.UserController.deleteById);
+
+    app.get('/getError', function (req, res) {
+        throw new _Exception.Unauthorization("Phai la admin moi duoc lam");
+    });
+
+    app.use(function (err, req, res, next) {
+        console.log(err.code, err.message);
+        res.status(err.code).send(err.message);
+        // res.status(err.code).send(err.message);
+    });
 });

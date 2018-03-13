@@ -1,4 +1,5 @@
 import Food from '../model/Food';
+import { debuglog } from 'util';
 
 export const FoodGateway = {
     create: (createFoodData) => {
@@ -15,7 +16,7 @@ export const FoodGateway = {
 
     updateById: (id, data) => {
         return new Promise((resolve, reject) => {
-            Food.findByIdAndUpdate({'_id': id}, data, (err, food) => {
+            Food.findByIdAndUpdate({ '_id': id }, data, (err, food) => {
                 if (err) {
                     reject(err);
                 } else {
@@ -32,7 +33,7 @@ export const FoodGateway = {
 
     findById: (id) => {
         return new Promise((resolve, reject) => {
-            Food.findById({'_id': id}, (err, food) => {
+            Food.findById({ '_id': id }, (err, food) => {
                 if (err) {
                     reject(err);
                 } else {
@@ -49,7 +50,7 @@ export const FoodGateway = {
 
     deleteById: (id) => {
         return new Promise((resolve, reject) => {
-            Food.remove({'_id': id}, (err, food) => {
+            Food.remove({ '_id': id }, (err, food) => {
                 if (err) {
                     reject(err);
                 } else {
@@ -57,6 +58,34 @@ export const FoodGateway = {
                         resolve('delete completely');
                     } else {
                         resolve('Food.NotFound');
+                    }
+                }
+            });
+        });
+    },
+
+    getFood: (id) => {
+        return new Promise((resolve, reject) => {
+            Food.find({ 'food': food }, (err, food) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(food);
+                }
+            });
+        });
+    },
+
+    getFoodById: (id) => {
+        return new Promise((resolve, reject) => {
+            Food.findById({ '_id': id }, (err, food) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    if (food) {
+                        resolve(food);
+                    } else {
+                        resolve('Food.NotFound')
                     }
                 }
             });

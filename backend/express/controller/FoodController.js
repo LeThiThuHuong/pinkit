@@ -27,5 +27,17 @@ export const FoodController = {
         FoodGateway.findById(req.params.foodId).then((food) => {
             res.json({food: food, status: 200, msg: 'successfully!'});
         })
+    },
+
+    getFood: (req, res) => {
+        FoodGateway.getFood(req.params.food).then((food) => {
+            res.json({food: food, status: 200});
+        })
+    },
+
+    getFoodById: (req, res) => {
+        FoodGateway.getFoodById(req.params.foodId).then((food) => {
+            res.json({food: food, status: 200});
+        })
     }
 }

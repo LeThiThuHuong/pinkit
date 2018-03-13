@@ -15,7 +15,7 @@ export const IngredientGateway = {
 
     updateById: (id, data) => {
         return new Promise((resolve, reject) => {
-            Ingredient.findByIdAndUpdate({'_id': id}, data, (err, ingredinet) => {
+            Ingredient.findByIdAndUpdate({ '_id': id }, data, (err, ingredinet) => {
                 if (err) {
                     reject(err);
                 } else {
@@ -31,7 +31,7 @@ export const IngredientGateway = {
 
     findById: (id) => {
         return new Promise((resolve, reject) => {
-            Ingredient.findById({'_id': id}, (err, ingredient) => {
+            Ingredient.findById({ '_id': id }, (err, ingredient) => {
                 if (err) {
                     reject(err);
                 } else {
@@ -47,7 +47,7 @@ export const IngredientGateway = {
 
     deleteById: (id) => {
         return new Promise((resolve, reject) => {
-            Ingredient.remove({'_id': id}, (err, ingredient) => {
+            Ingredient.remove({ '_id': id }, (err, ingredient) => {
                 if (err) {
                     reject(err);
                 } else {
@@ -59,5 +59,35 @@ export const IngredientGateway = {
                 }
             });
         });
+    },
+
+
+    getIngredient: (ingredient) => {
+        return new Promise((resolve, reject) => {
+            Ingredient.find({ 'ingredient': ingredient }, (err, ingredient) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(ingredient);
+                }
+            });
+        });
+    },
+
+
+    getIngredientById: (id) => {
+        return new Promise((resolve, reject) => {
+            Ingredient.findById({ '_id': id }, (err, ingredient) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    if (ingredient) {
+                        resolve(ingredient);
+                    } else {
+                        resolve('Ingredient.NotFound');
+                    }
+                }
+            });
+        })
     }
 }
