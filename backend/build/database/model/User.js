@@ -4,10 +4,14 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 var mongoose = require('mongoose');
+var bccrypt = require('bcrypt');
 
 var UserSchema = new mongoose.Schema({
     id: String,
-    username: String,
+    username: {
+        type: String,
+        unique: true
+    },
     age: Number,
     name: {
         firstname: String,
@@ -15,7 +19,10 @@ var UserSchema = new mongoose.Schema({
     },
     gender: String,
     email: String,
-    password: String
+    password: {
+        type: String,
+        unique: true
+    }
 });
 
 var User = mongoose.model('User', UserSchema);

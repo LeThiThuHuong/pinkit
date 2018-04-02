@@ -9,6 +9,8 @@ var _Category = require('../model/Category');
 
 var _Category2 = _interopRequireDefault(_Category);
 
+var _Exception = require('../../express/Exception');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var CategoryGateway = exports.CategoryGateway = {
@@ -56,6 +58,22 @@ var CategoryGateway = exports.CategoryGateway = {
         });
     },
 
+    findAllWithKeyword: function findAllWithKeyword(filter, offset, limit, order) {
+        return new Promise(function (resolve, reject) {
+            _Category2.default.find(filter).skip(offset).limit(limit).sort(order).exec(function (err, category) {
+                if (err) {
+                    reject(err);
+                } else {
+                    if (category) {
+                        resolve(category);
+                    } else {
+                        reject(new _Exception.NotFound('Category not found'));
+                    }
+                }
+            });
+        });
+    },
+
     deleteById: function deleteById(id) {
         return new Promise(function (resolve, reject) {
             _Category2.default.remove({ '_id': id }, function (err, category) {
@@ -64,6 +82,34 @@ var CategoryGateway = exports.CategoryGateway = {
                 } else {
                     if (category) {
                         resolve('deleted completely!');
+                    } else {
+                        resolve('Category.NotFound');
+                    }
+                }
+            });
+        });
+    },
+
+    getCategory: function getCategory(category) {
+        return new Promise(function (resolve, reject) {
+            _Category2.default.find({ 'food': food }, function (err, category) {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(category);
+                }
+            });
+        });
+    },
+
+    getCategoryById: function getCategoryById(id) {
+        return new Promis(function (resolve, reject) {
+            _Category2.default.findById({ '_id': id }, function (err, category) {
+                if (err) {
+                    reject(err);
+                } else {
+                    if (category) {
+                        resolve(category);
                     } else {
                         resolve('Category.NotFound');
                     }

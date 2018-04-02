@@ -1,5 +1,5 @@
 import Food from '../model/Food';
-import { debuglog } from 'util';
+import {InvalidParams, NotFound} from '../../express/Exception';
 
 export const FoodGateway = {
     create: (createFoodData) => {
@@ -47,6 +47,25 @@ export const FoodGateway = {
         });
     },
 
+    findAllWithKeyword: (filter, offset, limit, order) => {
+        return new Promise((resolve, reject) => {
+            Food.find(filter)
+            .skip(offset)
+            .limit(limit)
+            .sort(order)
+            .exec((err, food) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    if (food) {
+                        resolve(food);
+                    } else {
+                        reject(new NotFound('Food not found'));
+                    }
+                }
+            })
+        })
+    },
 
     deleteById: (id) => {
         return new Promise((resolve, reject) => {

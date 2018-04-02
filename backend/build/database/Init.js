@@ -8,7 +8,7 @@ var mongoose = require('mongoose');
 function connect() {
     return new Promise(function (resolve, reject) {
         var interval = setInterval(function () {
-            mongoose.connect('mongodb://localhost/pinkit', function (error) {
+            mongoose.connect(process.env.LOCAL_HOST, function (error) {
                 console.log(error);
                 if (!error) {
                     clearInterval(interval);

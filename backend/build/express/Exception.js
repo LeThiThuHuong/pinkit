@@ -18,7 +18,6 @@ var Exception = function (_Error) {
     function Exception(code, msg) {
         _classCallCheck(this, Exception);
 
-        // when use extends, must call super to reuse all chuc nang of error, then moi gan them cac prototype vao.
         var _this = _possibleConstructorReturn(this, (Exception.__proto__ || Object.getPrototypeOf(Exception)).call(this, msg));
 
         _this.code = code;
@@ -58,4 +57,16 @@ var InvalidParams = exports.InvalidParams = function (_Exception2) {
     }
 
     return InvalidParams;
+}(Exception);
+
+var NotFound = exports.NotFound = function (_Exception3) {
+    _inherits(NotFound, _Exception3);
+
+    function NotFound(msg) {
+        _classCallCheck(this, NotFound);
+
+        return _possibleConstructorReturn(this, (NotFound.__proto__ || Object.getPrototypeOf(NotFound)).call(this, 404, msg));
+    }
+
+    return NotFound;
 }(Exception);

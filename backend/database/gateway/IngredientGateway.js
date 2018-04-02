@@ -1,4 +1,5 @@
 import Ingredient from '../model/Ingredient';
+import { NotFound } from '../../express/Exception';
 
 export const IngredientGateway = {
     create: (createIngredientData) => {
@@ -45,6 +46,27 @@ export const IngredientGateway = {
         });
     },
 
+    findAllWithKeyWord: (filter, offset, limit, order) => {
+        return new Promise((resolve, reject) => {
+            Ingredient.find(filter)
+                .skip(offset)
+                .limit(limit)
+                .sort(order)
+                .exec((err, ingredient) => {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        if (ingredient) {
+                            resolve(ingredient);
+                        } else {
+                            reject(new NotFound('Ingredient not found'));
+                        }
+                    }
+                })
+        })
+    },
+
+
     deleteById: (id) => {
         return new Promise((resolve, reject) => {
             Ingredient.remove({ '_id': id }, (err, ingredient) => {
@@ -57,12 +79,12 @@ export const IngredientGateway = {
                         resolve('Ingredient.NotFound');
                     }
                 }
-            });
-        });
+            })
+        })
     },
 
 
-    getIngredient: (ingredient) => {
+    getIngredient: (ingredientName) => {
         return new Promise((resolve, reject) => {
             Ingredient.find({ 'ingredient': ingredient }, (err, ingredient) => {
                 if (err) {

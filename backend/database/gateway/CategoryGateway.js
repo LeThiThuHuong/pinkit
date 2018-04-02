@@ -1,4 +1,5 @@
 import Category from '../model/Category';
+import { NotFound } from '../../express/Exception';
 
 export const CategoryGateway = {
     create: (createCategoryData) => {
@@ -44,6 +45,26 @@ export const CategoryGateway = {
                 }
             });
         });
+    },
+
+    findAllWithKeyword: (filter, offset, limit, order) => {
+        return new Promise((resolve, reject) => {
+            Category.find(filter)
+            .skip(offset)
+            .limit(limit)
+            .sort(order)
+            .exec((err, category) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    if (category) {
+                        resolve(category);
+                    } else {
+                        reject(new NotFound ('Category not found'));
+                    }
+                }
+            })
+        })
     },
 
     deleteById: (id) => {

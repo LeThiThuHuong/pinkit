@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 function connect() {
     return new Promise((resolve, reject) => {
         const interval = setInterval(() => {
-            mongoose.connect('mongodb://localhost/pinkit', (error) => {
+            mongoose.connect(process.env.LOCAL_HOST, (error) => {
                 console.log(error);
                 if (!error) {
                     clearInterval(interval);
